@@ -4,7 +4,7 @@ import numpy
 from persona import Persona
 
 class PersonaTestCase(unittest.TestCase):
-git
+
    def setUp(self):
       self.persona1 = Persona(nombre='Alejandra', edad=25)
       self.persona2 = Persona(nombre='Diego', edad=22)
