@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "dgamarramoreno/automerge-action@6296cf7b3df394f00876aef3512a410682f7dfe9"
+        uses: "dgamarramoreno/personaApp@6296cf7b3df394f00876aef3512a410682f7dfe9"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: ""
