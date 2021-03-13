@@ -1,4 +1,4 @@
-name: Automerge
+name: Create Release
 on:
   pull_request:
     types:
@@ -10,9 +10,11 @@ on:
       - ready_for_review
       - reopened
       - unlocked
-    branches: [ develop ]
+    branches: [ master ]
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
-  job1:
+  pruebas:
     name: Pruebas
     runs-on: ubuntu-latest
     steps:
@@ -34,13 +36,24 @@ jobs:
       run: |
           coverage run -m unittest discover -s tests
           coverage report -m
-  automerge:
-    name: Automerge
-    needs: job1
+  createrelease:
+    name: Create Release
+    needs: pruebas
     runs-on: ubuntu-latest
     steps:
-      - name: automerge
-        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: ""
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
