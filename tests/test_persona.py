@@ -39,6 +39,6 @@ class PersonaTestCase(unittest.TestCase):
       self.assertIn(self.persona3, self.grupo)
       self.assertNotIn(self.persona4, self.grupo)
 
-   def test_instancia_clase2(self):
+   def test_instancia_clase1(self):
       self.assertIsInstance(self.persona1, Persona)
       self.assertNotIsInstance(self.grupo, Persona)
