@@ -42,3 +42,9 @@ class PersonaTestCase(unittest.TestCase):
    def test_instancia_clase1(self):
       self.assertIsInstance(self.persona1, Persona)
       self.assertNotIsInstance(self.grupo, Persona)
+
+   def test_fallo(self):
+      self.assertTrue(True)
+
+   def test_pass(self):
+      self.assertTrue(True)
