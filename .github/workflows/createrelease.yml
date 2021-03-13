@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Branch
-        uses: alice-biometrics/release-creator/@v1.0.4
+        uses: alice-biometrics/release-creator/@60638d0b1cee4207ad6be3e5428a45c4de68aa9c
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           version: 'v1.0.0'
