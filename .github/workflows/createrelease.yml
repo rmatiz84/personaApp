@@ -41,8 +41,9 @@ jobs:
     needs: pruebas
     runs-on: ubuntu-latest
     steps:
-      - name: Create Release
-        id: create_release
-        uses: zendesk/action-create-release@v1
+      - name: Create Branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: 'release-notes'
