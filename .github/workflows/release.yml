@@ -52,13 +52,18 @@ jobs:
     needs: pruebas
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout de repositorio
-        uses: actions/checkout@v2
-        with:
-          ref: release
       - name: automerge
         uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABELS: ""
-          MERGE_DELETE_BRANCH: true
+  borrar:
+    name: Borrar
+    needs: automerge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Borrar release
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          branches: release
