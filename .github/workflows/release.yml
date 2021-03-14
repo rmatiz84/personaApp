@@ -1,7 +1,16 @@
 name: Release
 on:
   pull_request:
-    branches: [ master ]
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+    branches: [ main ]
 jobs:
   createrelease:
     name: Create Release
