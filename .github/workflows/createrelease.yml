@@ -12,8 +12,18 @@ on:
       - unlocked
     branches: [ master ]
 jobs:
+  createrelease:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release
+        id: create_release
+        uses: zendesk/action-create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   pruebas:
     name: Pruebas
+    needs: createrelease
     runs-on: ubuntu-latest
     steps:
     - name: Checkout de repositorio
@@ -34,19 +44,9 @@ jobs:
       run: |
           coverage run -m unittest discover -s tests
           coverage report -m
-  createrelease:
-    name: Create Release
-    needs: pruebas
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create Release
-        id: create_release
-        uses: zendesk/action-create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   automerge:
     name: Automerge
-    needs: createrelease
+    needs: pruebas
     runs-on: ubuntu-latest
     steps:
       - name: automerge
