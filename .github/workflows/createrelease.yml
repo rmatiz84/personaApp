@@ -11,8 +11,6 @@ on:
       - reopened
       - unlocked
     branches: [ master ]
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 jobs:
   pruebas:
     name: Pruebas
@@ -41,13 +39,18 @@ jobs:
     needs: pruebas
     runs-on: ubuntu-latest
     steps:
-      - name: Create Branch
-        uses: alice-biometrics/release-creator/@60638d0b1cee4207ad6be3e5428a45c4de68aa9c
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          version: 'v1.0.0'
-          description: 'This is an awesome version :ok_hand:'
-          repo: 'alice-biometrics/github-releaser'
-          branch: 'master'
-          draft: 'false'
-          prerelease: 'false'
+      - name: Create Release
+          id: create_release
+          uses: zendesk/action-create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  automerge:
+    name: Automerge
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@4536e8847eb62fe2f0ee52c8fa92d17aa97f932f"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "Merge release pruebas ok"
