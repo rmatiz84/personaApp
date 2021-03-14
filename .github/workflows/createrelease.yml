@@ -46,7 +46,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   automerge:
     name: Automerge
-    needs: job1
+    needs: createrelease
     runs-on: ubuntu-latest
     steps:
       - name: automerge
