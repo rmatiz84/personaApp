@@ -46,5 +46,5 @@ class PersonaTestCase(unittest.TestCase):
    def test_fallo(self):
       self.assertTrue(True)
 
-   def test_pass(self):
+   def test_pass2(self):
       self.assertTrue(True)
