@@ -11,6 +11,8 @@ on:
       - reopened
       - unlocked
     branches: [ master ]
+  pull_request_target:
+    types: [ opened ]
 jobs:
   createrelease:
     name: Create Release
