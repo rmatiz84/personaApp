@@ -44,7 +44,7 @@ class PersonaTestCase(unittest.TestCase):
       self.assertNotIsInstance(self.grupo, Persona)
 
    def test_fallo(self):
-      self.assertTrue(True)
+      self.assertTrue(False)
 
-   def test_pass2(self):
+   def test_pass(self):
       self.assertTrue(True)
